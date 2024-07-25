@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>Yaseen's Portfolio - Profile HTML Page</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="Tooplate">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css\styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- MAIN CSS -->
+  <link rel="stylesheet" href="css/tooplate-ben-resume-style.css">
+  <!--
+Tooplate 2120 Ben Resume
+https://www.tooplate.com/view/2120-ben-resume
+-->
+  <script>
+  function formval() {
+    var uname = document.getElementById("uname").value;
+    var email = document.getElementById("email").value;
+    var message = document.getElementById("message").value;
+    var number = document.getElementById("number").value;
+
+    if (uname == "") {
+        alert("Must Enter A Username");
+        document.getElementById("uname").focus();
+        return false;
+    }
+    if (!isNaN(uname)) {
+        alert("Username cannot be a number");
+        document.getElementById("uname").focus();
+        return false;
+    }
+
+    if (email == "") {
+        alert("Must Enter An Email");
+        document.getElementById("email").focus();
+        return false;
+    }
+    if (message == "") {
+        alert("Must Enter A Message");
+        document.getElementById("message").focus();
+        return false;
+    }
+    if (number == "") {
+        alert("Must Enter A Number");
+        document.getElementById("number").focus();
+        return false;
+    }
+    if (number.length != 10) {
+        alert("Number must be exactly 10 digits");
+        document.getElementById("number").focus();
+        return false;
+    }
+
+    return true;
+}
+
+
+
+
+
+
+    const form = document.getElementById("form");
+    const result = document.getElementById("result");
+
+    form.addEventListener("submit", function (e) {
+      const formData = new FormData(form);
+      e.preventDefault();
+      var object = {};
+      formData.forEach((value, key) => {
+        object[key] = value;
+      });
+      var json = JSON.stringify(object);
+      result.innerHTML = "Please wait...";
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: json
+      })
+        .then(async (response) => {
+          let json = await response.json();
+          if (response.status == 200) {
+            result.innerHTML = json.message;
+            result.classList.remove("text-gray-500");
+            result.classList.add("text-green-500");
+          } else {
+            console.log(response);
+            result.innerHTML = json.message;
+            result.classList.remove("text-gray-500");
+            result.classList.add("text-red-500");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          result.innerHTML = "Something went wrong!";
+        })
+        .then(function () {
+          form.reset();
+          setTimeout(() => {
+            result.style.display = "none";
+          }, 5000);
+        });
+    });
+
+  </script>
+</head>
+
+<body data-spy="scroll" data-target="#navbarNav" data-offset="50">
+
+  <!-- MENU BAR -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+
+      <a class="navbar-brand" href="#">
+        Yaseen
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a href="#intro" class="nav-link smoothScroll">Introduction</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#about" class="nav-link smoothScroll">About Me</a>
+          </li>
+          <li class="nav-item">
+            <a href="#projects" class="nav-link smoothScroll">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a href="#history" class="nav-link smoothScroll">History</a>
+          </li>
+         
+          <li class="nav-item">
+            <a href="#contact" class="nav-link smoothScroll">Contact</a>
+          </li>
+
+        </ul>
+
+        <div class="mt-lg-0 mt-3 mb-4 mb-lg-0">
+          <a href="Assets/yaseen cv.pdf" class="custom-btn btn" download>Download CV</a>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+  <section class="hero d-flex flex-column justify-content-center align-items-center" id="intro">
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-5 mx-auto col-md-6 col-12">
+          <img src="images\yaseen.jpg" class="about-image img-fluid myimg" alt="Ben's Resume HTML Template">
+        </div>
+
+        <div class="d-flex flex-column justify-content-center align-items-center col-lg-7 col-md-7 col-12">
+          <div class="hero-text">
+
+            <h1 class="hero-title">👋 It's Yaseen Here, I Am A Software Developer</h1>
+
+            <a href="mailto:yaseenpottarath@gmail.com" class="email-link">
+              yaseenpottarath@gmail.com
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="about section-padding" id="about">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-6 col-md-6 col-12">
+          <h3 class="mb-4">About My Skills</h3>
+
+          <p>Yaseen's Portfolio
+            Welcome to my portfolio! I am Yaseen, a passionate and dedicated fresher software developer. I specialize in
+            Flutter and web design, and I am enthusiastic about creating efficient, scalable, and user-friendly software
+            solutions.
+
+
+            With a solid foundation in software development, I have honed my skills through various projects and
+            continuous learning. I am eager to apply my knowledge and creativity to real-world problems and collaborate
+            with like-minded professionals.</p>
+
+          <p>Proficient in creating high-performance, well-architected, and visually appealing cross-platform apps using
+            Flutter and Dart.
+          </p>
+
+          <ul class="mt-4 mb-5 mb-lg-0 profile-list list-unstyled">
+            <li><strong>Full Name :</strong> Mohammed Yaseen </li>
+
+            <li><strong>Date of Birth:</strong> 21 February 2003</li>
+
+
+
+            <li><strong>Email :</strong> yaseenpottarath@gmail.com</li>
+          </ul>
+        </div>
+
+        <div class="col-lg-5 mx-auto col-md-6 col-12">
+          <img src="images/true-agency.jpg" class="about-image img-fluid" alt="Ben's Resume HTML Template">
+        </div>
+
+      </div>
+      <div class="row about-third">
+        <div class="col-lg-4 col-md-4 col-12">
+          <h3>Work experience</h3>
+          <p>During my journey as a software developer, I have gained hands-on experience in creating user interfaces
+            with Flutter and designing responsive web pages. With a solid grasp of basic Flutter UI design, I have
+            developed engaging and intuitive mobile app interfaces. Additionally, my proficiency in HTML, CSS,
+            JavaScript, and Bootstrap has enabled me to build responsive and visually appealing websites. I am adept at
+            ensuring that web designs adapt seamlessly across various devices and screen sizes, providing a consistent
+            user experience. These experiences have sharpened my skills in both mobile and web design, allowing me to
+            deliver functional and aesthetically pleasing solutions.</p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-12">
+          <h3>My Mission</h3>
+          <p>My mission as a Flutter Developer is to create innovative, user-centric mobile applications that not only
+            meet but exceed user expectations. I am dedicated to leveraging my skills in Flutter and Dart to develop
+            seamless, high-performance apps that provide exceptional user experiences across platforms. Committed to
+            continuous learning and staying abreast of the latest industry trends, I strive to incorporate cutting-edge
+            technologies and best practices in my work. Ultimately, my goal is to contribute to meaningful projects that
+            drive business success and enhance the digital experiences of users worldwide.</p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-12">
+          <h3>Other Tech Skills</h3>
+          <p>In addition to my proficiency in Flutter development, I possess strong skills in video editing and web
+            designing. With a keen eye for detail and a creative mindset, I excel in video editing, transforming raw
+            footage into engaging visual narratives through precise cuts, seamless transitions, and impactful effects.
+            My expertise in web designing allows me to create visually appealing, user-friendly websites that are both
+            functional and aesthetically pleasing. Combining these skills, I am able to deliver comprehensive digital
+            solutions that enhance user experiences across various platforms. My ability to blend technical prowess with
+            artistic creativity enables me to contribute to a wide range of projects, making me a versatile and valuable
+            asset to any team.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pglanguage">
+      <h1>Languages known</h1>
+      <div class="row">
+
+        <div class="col-lg-1 col-sm-4 b"><i class="fa-brands fa-python" style="font-size: 50px; margin: 50px;"></i></div>
+        <div class="col-lg-1 col-sm-4"><i class="fa-solid fa-c" style="font-size: 50px; margin: 50px;"></i></div>
+        <div class="col-lg-1 col-sm-4"><i class="fa-brands fa-css3-alt" style="font-size: 50px;margin: 50px;"></i></div>
+        <div class="col-lg-1 col-sm-4"><i class="fa-brands fa-html5" style="font-size: 50px; margin: 50px;"></i></div>
+        <div class="col-lg-1 col-sm-4"><i class="fa-brands fa-java" style="font-size: 50px;margin: 50px;"></i></div>
+        <div class="col-lg-1 col-sm-4"><i class="fa-brands fa-js" style="font-size: 50px;margin: 50px;"></i></div>
+        <div class="col-lg-1 col-sm-4"><i class="fa-brands fa-dart-lang" style="font-size: 50px;margin: 50px;"></i>
+        </div>
+      </div>
+
+
+
+  </section>
+
+  <!-- projects -->
+  <section class="about section-padding" id="projects">
+    <div class="container">
+      <div class="row">
+<!-- 
+        <div class="col-lg-12 col-md-12 col-12"> -->
+          <h4 class="mb-4">My Recent Projects</h4>
+          <h3 class="mb-4">EasyShop</h3>
+          <div class="col-lg-5 mx-auto col-md-6 col-12">
+            <img src="images/easyshoplogopage.jpg" class="about-image img-fluid mb-2 mt-2"
+              alt="Ben's Resume HTML Template">
+          </div>
+          <p>EASYSHOP is a online platform crafted to simplify the trading of rare and
+            unique items. Catering to the diverse needs of collectors, enthusiasts, and
+            investors, it provides a secure and user-friendly environment for the
+            exchange of valuable artefacts and collectables. Through the integration of
+            advanced technologies and security measures,
+            "EASYSHOP" ensures a
+            trustworthy and immersive experience for users worldwide, promising a
+            seamless journey in the pursuit of unique treasures.</p>
+
+
+          <h3>Overview</h3>
+          <p>Simplify Trading Processes:
+
+            Create an intuitive platform that streamlines the buying and selling of rare and unique items.
+            Develop user-friendly interfaces and workflows to facilitate easy navigation and transactions.
+            Cater to Diverse Needs:
+
+            Address the specific requirements of collectors, enthusiasts, and investors.
+            Offer tailored features and services to meet the varying demands of different user groups.
+            Ensure Security and Trust:
+
+            Implement advanced security measures to protect user data and transactions.
+            Build trust through transparent processes and robust fraud prevention mechanisms.
+            Enhance User Experience:
+
+            Integrate cutting-edge technologies to provide an immersive and engaging user experience.
+            Ensure seamless interactions and a smooth journey from item discovery to purchase.
+            Promote Global Accessibility:
+
+            Design the platform to be accessible and user-friendly for a global audience.
+            Support multiple languages and currencies to facilitate international trading.
+            Foster a Vibrant Community:
+
+            Build a thriving community of collectors, sellers, and buyers through forums, reviews, and social features.
+            Encourage interaction and knowledge sharing among users.
+            Streamline Operations:
+
+            Optimize backend processes to ensure efficient and reliable platform performance.
+            Continuously monitor and improve the system for maximum uptime and responsiveness.
+            Support Sustainable Practices:
+
+            Promote sustainable and ethical trading practices within the community.
+            Educate users on the importance of preserving the value and integrity of rare items.</p>
+
+          <hr>
+
+
+
+
+
+
+
+
+
+
+
+
+          <!-- history -->
+          <section class="about section-padding" id="history">
+            
+              <div class="row">
+                <div class="col-lg-12 col-md-12">
+                  <h3 class="mb-4">History</h3>
+                  <p>
+                    I am a fresher software developer with a Bachelor of Computer Applications (BCA). My technical skills
+                    encompass basic Flutter UI design and proficiency in creating responsive web designs using HTML,
+                    CSS, JavaScript, and Bootstrap. My portfolio reflects my dedication to building user-friendly and
+                    visually appealing interfaces, demonstrating my ability to adapt and learn in the ever-evolving
+                    field of software development. Through hands-on experience, I have developed a keen eye for detail
+                    and a passion for crafting seamless user experiences.
+                  </p>
+                </div>
+              </div>
+           
+          </section>
+          
+
+
+
+
+
+
+
+
+
+
+         
+          <!-- FAQ 
+  <section class="faq section-padding">
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-12 col-12">
+
+          <h3 class="mb-5">Frequently Asked Questions</h3>
+
+          <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    What motivated you to specialize in Flutter development?
+                  </button>
+                </h2>
+              </div>
+
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                  <p>I was drawn to Flutter because of its ability to create high-quality, natively compiled
+                    applications for mobile, web, and desktop from a single codebase. The framework’s fast development
+                    cycle, expressive UI components, and strong community support made it an exciting choice for me. I
+                    enjoy the challenge of building efficient, cross-platform solutions and see Flutter as a powerful
+                    tool for achieving that</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="false" aria-controls="collapseTwo">
+                    How do you manage your time effectively when handling multiple projects?
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                  <p> I use a combination of prioritization and organization techniques to manage my time effectively. I
+                    start by breaking down projects into manageable tasks and setting clear deadlines. I use tools like
+                    task management apps and calendars to keep track of progress and ensure timely completion. Regularly
+                    reviewing and adjusting my schedule helps me stay focused and adapt to any changes or unexpected
+                    challenges.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                    data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    How do you stay updated with the latest trends and advancements in Flutter development?
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                  <p>I stay updated by regularly following Flutter’s official documentation and release notes. I also
+                    participate in online communities, such as forums and social media groups, and attend webinars and
+                    conferences related to Flutter. Additionally, I experiment with new features and tools in personal
+                    projects to keep my skills sharp and up-to-date.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header" id="headingFour">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                    data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Can you describe a challenging project you worked on and how you overcame the obstacles?
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                <div class="card-body">
+                  <p> One challenging project involved integrating complex third-party APIs into a Flutter app with
+                    tight performance constraints. The key obstacle was ensuring seamless data synchronization and
+                    handling varying network conditions. I tackled this by implementing efficient data caching
+                    strategies and optimizing API calls. Regular performance testing and iterative improvements helped
+                    us meet the project’s requirements and deliver a smooth user experience.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header" id="headingFive">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                    data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    How do you approach video editing and web designing as part of your skill set?
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                <div class="card-body">
+                  <p>For video editing, I focus on storytelling through precise cuts, transitions, and visual effects,
+                    using software like Adobe Premiere Pro and Final Cut Pro. My approach involves understanding the
+                    project's goals and audience to create engaging and polished content. In web designing, I prioritize
+                    user experience and visual aesthetics, using tools like Adobe XD and Figma to create responsive,
+                    user-friendly designs. Both skills complement my development work by enhancing the overall quality
+                    of digital projects.</p>
+                </div>
+              </div>
+            </div>
+
+            <span class="faq-info-text">Please send us a message if you have anything to say. Send an email message to
+              <strong>yaseenpottarath@gmail.com</strong></span>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>-->
+
+
+  <section class="contact section-padding pt-0" id="contact">
+    
+  
+        <div class="col-lg-6 col-md-12 col-12"> <!-- Adjusted column classes for better responsiveness -->
+          <div class="flex items-center min-h-screen bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto">
+              <div class="max-w-md mx-auto my-10 bg-white p-1 rounded-md">
+                <div class="text-center">
+                  <h1 class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">
+                    Contact Us
+                  </h1>
+                  <!-- <p class="text-gray-400 dark:text-gray-400">
+                    Fill up the form below to send us a message.
+                  </p> -->
+                </div>
+                <div class="m-7">
+                  <!DOCTYPE html>
+                  <html lang="en">
+                  <head>
+                      <meta charset="UTF-8">
+                      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                      <title>Document</title>
+                      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+                  
+                  </head>
+                  <body>
+                      <div class="container mt-5">
+                          
+                              <div class="col-md-8">
+                                  <form name="form1" action="https://api.web3forms.com/submit" method="POST" onsubmit="return formval()">
+                                      <input type="hidden" name="access_key" value="2312dcee-fd06-487c-a86e-30e883c69429">
+                                      <div class="form-group">
+                                          <label for="uname">Username</label>
+                                          <input type="text" class="form-control" id="uname" name="name" placeholder="Enter your username">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="email">Email</label>
+                                          <input  type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="number">Number</label>
+                                          <input type="text" class="form-control" id="number" name="number" placeholder="Enter your number">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="message">Message</label>
+                                          <textarea class="form-control" id="message" name="message" rows="3" placeholder="Enter your message"></textarea>
+                                      </div>
+                                      <button type="submit" class="btn btn-primary">Submit</button>
+                                  </form>
+                              
+                          </div>
+                      </div>
+           
+                      
+                      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+                      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                  </body>
+                  </html>
+                  
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  <br>
+  <br>
+        <div class="col-lg-4 col-md-12 col-12 mt-4 mt-lg-0">
+          <h3 class="my-4 pt-4 pt-lg-0">Say hello</h3>
+          <p class="mb-1">+91 7356041058</p>
+          <p>
+            <a href="mailto:yaseenpottarath@gmail.com">
+              yaseenpottarath@gmail.com
+              <i class="fas fa-arrow-right custom-icon"></i>
+            </a>
+          </p>
+          <ul class="social-links mt-2">
+            <li><a href="https://fb.com/tooplate" rel="noopener" class="fab fa-facebook"></a></li>
+            <li><a href="#" rel="noopener" class="fab fa-twitter"></a></li>
+            <li><a href="#" rel="noopener" class="fab fa-instagram"></a></li>
+            <li><a href="#" rel="noopener" class="fab fa-linkedin"></a></li>
+            <li><a href="#" rel="noopener" class="fab fa-youtube"></a></li>
+          </ul>
+          <p class="copyright-text mt-5 pt-3">Copyright &copy; 2024 Yaseen portfolio Page</p>
+          
+        </div>
+  
+    
+  </section>
+  
+          <!-- SCRIPTS -->
+
+
+          <script src="js/jquery.min.js"></script>
+          <script src="js/bootstrap.min.js"></script>
+          <script src="js/smoothscroll.js"></script>
+          <script src="js/owl.carousel.min.js"></script>
+          <script src="js/custom.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

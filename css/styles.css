@@ -1,0 +1,43 @@
+.myimg{
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.pglanguage h1{
+    text-align: center;
+}
+
+
+.languagelogoes{
+   
+}
+
+
+.row{
+    justify-content: center;
+    padding: 50px;
+}
+.logorow{
+    justify-content: center;
+    margin: 25px;
+}
+
+.textspace{
+    height: 40px;
+    width: 400px;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 3px;
+}
+
+.messegespace{
+    width: 400px;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 3px;
+}
+
+#submitbtn{
+    margin-top: 10px;
+    width: 100%;
+}
